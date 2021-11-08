@@ -1,21 +1,21 @@
 import { getSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
-import { PrismaClient } from '@prisma/client';
+// import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
-async function saveUser(userData) {
-  const response = await fetch('/api/newUser', {
-    method: 'POST',
-    body: JSON.stringify(userData),
-  });
+// async function saveUser(userData) {
+//   const response = await fetch('/api/newUser', {
+//     method: 'POST',
+//     body: JSON.stringify(userData),
+//   });
 
-  if (!response.ok) {
-    throw new Error(response.statusText);
-  }
+//   if (!response.ok) {
+//     throw new Error(response.statusText);
+//   }
 
-  return await response.json();
-}
+//   return await response.json();
+// }
 
 const Profile = ({ user }) => {
   const {
@@ -32,7 +32,7 @@ const Profile = ({ user }) => {
 
   const onSubmit = async (data) => {
     try {
-      await saveUser(data);
+      // await saveUser(data);
       console.log('success');
     } catch (error) {
       console.log(error);
@@ -132,8 +132,8 @@ export default Profile;
 
 export async function getServerSideProps({ req }) {
   const session = await getSession({ req });
-  const users = await prisma.user.findMany();
-  console.log(users);
+  // const users = await prisma.user.findMany();
+  // console.log(users);
   console.log(session.user);
   if (!session) {
     return {
