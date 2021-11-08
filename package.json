@@ -13,6 +13,7 @@
     "@prisma/client": "^3.4.1",
     "@tailwindcss/aspect-ratio": "^0.3.0",
     "@tailwindcss/typography": "^0.4.1",
+    "framer-motion": "^5.2.1",
     "next": "latest",
     "next-auth": "^4.0.0-beta.6",
     "react": "^17.0.2",
