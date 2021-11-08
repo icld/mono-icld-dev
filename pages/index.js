@@ -1,28 +1,48 @@
 import Head from 'next/head';
 
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useSession, getSession } from 'next-auth/react';
+
+import ActiveUser from 'components/users/ActiveUser';
+
 export default function Home() {
-  return (
-    <div className='flex flex-col items-center justify-center min-h-screen py-2'>
-      <Head>
-        <title>Create Next App</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
+  const { data: user, status } = useSession();
+  const router = useRouter();
 
-      <main className='flex flex-col items-center justify-center flex-1 w-full px-20 text-center'>
-        Here we are
-      </main>
+  if (typeof window !== 'undefined') return null;
 
-      <footer className='flex items-center justify-center w-full h-24 border-t'>
-        <a
-          className='flex items-center justify-center'
-          href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Powered by{' '}
-          <img src='/vercel.svg' alt='Vercel Logo' className='h-4 ml-2' />
-        </a>
-      </footer>
-    </div>
-  );
+  if (user) {
+    return (
+      <>
+        <Head>
+          <title>mweet</title>
+          <link rel='icon' href='/favicon.ico' />
+        </Head>
+        <div className='relative flex flex-col items-center justify-center h-screen m-auto'>
+          {status === 'loading' && <p>loading...</p>}
+          {user && <ActiveUser />}
+        </div>
+      </>
+    );
+  } else {
+    return <div>Access Denied</div>;
+  }
+}
+
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      session,
+    },
+  };
 }
