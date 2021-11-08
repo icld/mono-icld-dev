@@ -10,6 +10,7 @@
     "pre-commit": "npm run lint"
   },
   "dependencies": {
+    "@prisma/client": "^3.4.1",
     "@tailwindcss/aspect-ratio": "^0.3.0",
     "@tailwindcss/typography": "^0.4.1",
     "next": "latest",
