@@ -32,7 +32,7 @@ const Profile = ({ user }) => {
 
   const onSubmit = async (data) => {
     try {
-      // await saveUser(data);
+      await saveUser(data);
       console.log('success');
     } catch (error) {
       console.log(error);
