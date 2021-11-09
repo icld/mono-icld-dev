@@ -3,10 +3,8 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSession, getSession } from 'next-auth/react';
 import { prisma } from 'lib/prisma/client';
-import ActiveUser from 'components/users/ActiveUser';
 import { useStore } from 'lib/zustand/store';
-
-// const prisma = new PrismaClient();
+import PostForm from 'components/feed/PostForm';
 
 export default function Home({ newActiveUser, session }) {
   const { data: user, status } = useSession();
@@ -18,8 +16,6 @@ export default function Home({ newActiveUser, session }) {
     setSessionUser(newActiveUser);
   }, []);
 
-  if (typeof window !== 'undefined') return null;
-
   if (user) {
     return (
       <>
@@ -28,8 +24,8 @@ export default function Home({ newActiveUser, session }) {
           <link rel='icon' href='/favicon.ico' />
         </Head>
         <div className='relative flex flex-col items-center justify-center h-screen m-auto'>
+          <PostForm />
           {status === 'loading' && <p>loading...</p>}
-          {user && <ActiveUser />}
         </div>
       </>
     );

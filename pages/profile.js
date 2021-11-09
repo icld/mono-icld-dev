@@ -51,7 +51,6 @@ const Profile = ({ user }) => {
       console.log(error);
     }
   };
-  console.log(errors);
 
   const nameFieldStyle =
     'flex flex-row items-center px-3.5 py-2.5 w-72 border shadow-sm border-gray-300 rounded-md text-sm text-gray-500  ';
