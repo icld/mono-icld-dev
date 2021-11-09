@@ -4,9 +4,9 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-async function saveUser(userData) {
-  const response = await fetch('/api/postUser', {
-    method: 'POST',
+async function updateUser(userData) {
+  const response = await fetch('/api/updateUser', {
+    method: 'PUT',
     body: JSON.stringify(userData),
   });
 
@@ -32,8 +32,9 @@ const Profile = ({ user }) => {
 
   const onSubmit = async (data) => {
     try {
-      await saveUser(data);
-      console.log('success');
+      console.log(data);
+      await updateUser(data);
+      alert('success');
     } catch (error) {
       console.log(error);
     }
@@ -62,10 +63,10 @@ const Profile = ({ user }) => {
               </label>
               <input
                 type='text'
-                placeholder='First name'
+                placeholder={firstName}
                 {...register('firstName', { required: true, maxLength: 80 })}
                 className={`${nameFieldStyle}`}
-                value={firstName}
+                defaultValue={firstName}
               />
             </div>
             <div>
@@ -77,7 +78,7 @@ const Profile = ({ user }) => {
                 placeholder='Last name'
                 {...register('lastName', { required: true, maxLength: 100 })}
                 className={`${nameFieldStyle}`}
-                value={lastName}
+                defaultValue={lastName}
               />
             </div>
           </div>
@@ -91,7 +92,7 @@ const Profile = ({ user }) => {
               placeholder='Your Handle'
               {...register('userName', { required: true, maxLength: 100 })}
               className={`${fieldStyle}`}
-              value={handle}
+              defaultValue={handle}
             />
           </div>
 
@@ -104,7 +105,7 @@ const Profile = ({ user }) => {
               placeholder='Email'
               {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
               className={`${fieldStyle}`}
-              value={email}
+              defaultValue={email}
             />
           </div>
 
@@ -118,7 +119,7 @@ const Profile = ({ user }) => {
 
           <button
             type='submit'
-            className='py-2.5 px-5 w-36  h-11 text-sm font-medium text-white bg-purple-700 rounded-md'
+            className='py-2.5 px-5 w-36  h-11 text-sm font-medium text-white bg-purple-700 hover:bg-purple-500 rounded-md'
           >
             Update info
           </button>
