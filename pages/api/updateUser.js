@@ -9,14 +9,14 @@ export default async function updateUser(req, res) {
 
   const userData = JSON.parse(req.body);
 
-  const upsertUser = await prisma.user.upsert({
+  const upsertUser = await prisma.user.update({
     where: {
-      email: userData.email,
+      id: userData.id,
     },
-    update: {
+    data: {
       firstName: userData.firstName,
       lastName: userData.lastName,
-      username: userData.userName,
+      userName: userData.userName,
       email: userData.email,
     },
   });

@@ -10,15 +10,14 @@ const prisma = new PrismaClient();
 
 export default function Home({ newActiveUser, session }) {
   const { data: user, status } = useSession();
-  const { activeUser, setActiveUser } = useStore();
+  const { sessionUser, setSessionUser } = useStore();
   const router = useRouter();
 
   useEffect(() => {
-    setActiveUser(newActiveUser);
-    console.log(newActiveUser);
+    setSessionUser(newActiveUser);
   }, []);
 
-  if (typeof window !== 'undefined') return null;
+  // if (typeof window !== 'undefined') return null;
 
   if (user) {
     return (

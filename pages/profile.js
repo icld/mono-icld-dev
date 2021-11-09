@@ -1,13 +1,26 @@
+import { useEffect } from 'react';
 import { getSession } from 'next-auth/react';
+
 import { useForm } from 'react-hook-form';
-import { PrismaClient } from '@prisma/client';
+import { useRouter } from 'next/router';
+import { useStore } from 'lib/zustand/store';
 
-const prisma = new PrismaClient();
+async function getUserById(id) {
+  const response = await fetch('/api/getUser', {
+    method: 'GET',
+    body: JSON.stringify(id),
+  });
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
 
-async function updateUser(userData) {
+  return await response.json();
+}
+
+async function updateUser(formData) {
   const response = await fetch('/api/updateUser', {
     method: 'PUT',
-    body: JSON.stringify(userData),
+    body: JSON.stringify(formData),
   });
 
   if (!response.ok) {
@@ -18,23 +31,24 @@ async function updateUser(userData) {
 }
 
 const Profile = ({ user }) => {
+  const router = useRouter();
+  const { sessionUser } = useStore();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const { name, image, email } = user;
-  const fullName = name.split(' ');
-  const firstName = fullName[0];
-  const lastName = fullName[fullName.length - 1];
-  const handle = `@${firstName[0]}${lastName}`;
+  const { firstName, lastName, userName, email, id, image } = sessionUser;
+
+  console.log(sessionUser);
 
   const onSubmit = async (data) => {
     try {
       console.log(data);
       await updateUser(data);
       alert('success');
+      router.push('/');
     } catch (error) {
       console.log(error);
     }
@@ -92,7 +106,7 @@ const Profile = ({ user }) => {
               placeholder='Your Handle'
               {...register('userName', { required: true, maxLength: 100 })}
               className={`${fieldStyle}`}
-              defaultValue={handle}
+              defaultValue={userName}
             />
           </div>
 
@@ -116,6 +130,13 @@ const Profile = ({ user }) => {
             hidden
             value={image}
           />
+          <input
+            type='hidden'
+            {...register('id', { required: true })}
+            className={`${fieldStyle} 'sr-only'`}
+            hidden
+            value={id}
+          />
 
           <button
             type='submit'
@@ -133,9 +154,7 @@ export default Profile;
 
 export async function getServerSideProps({ req }) {
   const session = await getSession({ req });
-  const users = await prisma.user.findMany();
-  console.log(users);
-  console.log(session.user);
+
   if (!session) {
     return {
       redirect: {
