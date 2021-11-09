@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from 'lib/prisma/client';
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 export default async function updateUser(req, res) {
   if (req.method !== 'PUT') {

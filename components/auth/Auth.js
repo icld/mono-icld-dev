@@ -8,8 +8,6 @@ const Auth = ({ children }) => {
   const { data: user, status } = useSession();
   const router = useRouter();
 
-  console.log(status);
-
   return (
     <>
       {router.pathname === '/login' ? null : <VerticalNav />}

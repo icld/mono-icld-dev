@@ -2,11 +2,11 @@ import Head from 'next/head';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSession, getSession } from 'next-auth/react';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from 'lib/prisma/client';
 import ActiveUser from 'components/users/ActiveUser';
 import { useStore } from 'lib/zustand/store';
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 export default function Home({ newActiveUser, session }) {
   const { data: user, status } = useSession();
@@ -14,10 +14,11 @@ export default function Home({ newActiveUser, session }) {
   const router = useRouter();
 
   useEffect(() => {
+    const x = newActiveUser;
     setSessionUser(newActiveUser);
   }, []);
 
-  // if (typeof window !== 'undefined') return null;
+  if (typeof window !== 'undefined') return null;
 
   if (user) {
     return (
@@ -71,7 +72,7 @@ export async function getServerSideProps({ req }) {
       },
     });
   } else {
-    newActiveUser = account;
+    newActiveUser = await account;
   }
   console.log(newActiveUser);
   return {

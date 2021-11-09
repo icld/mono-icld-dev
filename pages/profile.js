@@ -41,8 +41,6 @@ const Profile = ({ user }) => {
 
   const { firstName, lastName, userName, email, id, image } = sessionUser;
 
-  console.log(sessionUser);
-
   const onSubmit = async (data) => {
     try {
       console.log(data);

@@ -20,7 +20,6 @@ async function updateUser(userData) {
 
 export default function Home() {
   const { data: session, status } = useSession();
-  console.log(session);
   return (
     <div className='relative flex flex-col items-center justify-center h-screen m-auto'>
       <FaTwitter className='w-12 h-12 text-twitter ' />
