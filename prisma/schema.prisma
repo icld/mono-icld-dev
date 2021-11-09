@@ -15,7 +15,7 @@ model User {
   firstName String
   userName  String
   lastName  String
-  email     String
+  email     String @unique
   image     String
   following User[] @relation("follows")
   followers User[] @relation("follows")

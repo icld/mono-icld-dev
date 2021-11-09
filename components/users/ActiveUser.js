@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 
 const ActiveUser = () => {
   const { data: user, status } = useSession();
+  console.log(user);
   return (
     <>
       {status === 'loading' ? (

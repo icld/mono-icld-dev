@@ -5,6 +5,19 @@ import MicrosoftSvg from 'components/buttons/MicrosoftSvg';
 import GoogleSvg from 'components/buttons/GoogleSvg';
 import { signIn, signOut, useSession } from 'next-auth/react';
 
+async function updateUser(userData) {
+  const response = await fetch('/api/updateUser', {
+    method: 'PUT',
+    body: JSON.stringify(userData),
+  });
+
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+
+  return await response.json();
+}
+
 export default function Home() {
   const { data: session, status } = useSession();
   console.log(session);
@@ -18,9 +31,7 @@ export default function Home() {
       <div className='flex mt-6 space-x-3 '>
         {buttonInfo.map((item, i) => (
           <div
-            onClick={() =>
-              signIn(`${item.signInId}`, { callbackUrl: '/profile' })
-            }
+            onClick={() => signIn(`${item.signInId}`, { callbackUrl: '/' })}
             key={`login-button-${i}`}
           >
             <LoginButton text={item.text} icon={item.icon} />
