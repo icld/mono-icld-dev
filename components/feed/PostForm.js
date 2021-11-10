@@ -31,6 +31,8 @@ const PostForm = () => {
       alert('success');
       //   router.push('/');
     } catch (error) {
+      console.log('here error');
+      console.log(errors);
       console.log(error);
     }
   };
