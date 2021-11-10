@@ -47,6 +47,8 @@ const PostForm = () => {
           value={sessionUser?.id}
         />
         <textarea
+          placeholder="What's on your min..."
+          type='text'
           {...register('content', { required: true, min: 1, maxLength: 280 })}
         />
 
@@ -54,7 +56,7 @@ const PostForm = () => {
           type='submit'
           className='py-2.5 px-5 w-36  h-11 text-sm font-medium text-white bg-purple-700 hover:bg-purple-500 rounded-md'
         >
-          Submit
+          Send Mweet
         </button>
       </form>
     </div>
