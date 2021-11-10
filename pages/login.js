@@ -36,9 +36,9 @@ export default function Home() {
             <LoginButton text={item.text} icon={item.icon} />
           </div>
         ))}
-        <button onClick={() => signIn('github', { callbackUrl: '/' })}>
+        {/* <button onClick={() => signIn('github', { callbackUrl: '/' })}>
           github
-        </button>
+        </button> */}
       </div>
     </div>
   );
