@@ -61,7 +61,7 @@ const Profile = ({ user }) => {
   const labelStyle = 'mb-1 text-sm font-medium text-gray-700';
 
   return (
-    <div className='absolute w-full h-screen'>
+    <div className='absolute w-full h-full'>
       <div className='relative font-normal left-80 mt-11'>
         <h1 className='text-2xl font-extrabold mb-7'>Your Profile</h1>
 
