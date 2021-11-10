@@ -11,7 +11,7 @@ const UserAvatar = ({ user }) => {
   // Check if sessionUser is following this user
   useEffect(() => {
     setFollowing(sessionUser.following.some((item) => item.id === user.id));
-  }, []);
+  }, [setFollowing]);
 
   const handleFollow = async () => {
     const data = {
