@@ -5,18 +5,6 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { useStore } from 'lib/zustand/store';
 
-async function getUserById(id) {
-  const response = await fetch('/api/getUser', {
-    method: 'GET',
-    body: JSON.stringify(id),
-  });
-  if (!response.ok) {
-    throw new Error(response.statusText);
-  }
-
-  return await response.json();
-}
-
 async function updateUser(formData) {
   const response = await fetch('/api/updateUser', {
     method: 'PUT',

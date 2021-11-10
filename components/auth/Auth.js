@@ -10,7 +10,7 @@ const Auth = ({ children }) => {
 
   return (
     <>
-      {router.pathname === '/login' ? null : <VerticalNav />}
+      {/* {router.pathname === '/login' ? null : <VerticalNav />} */}
       {status === 'loading' ? <LoadingAnimation /> : <> {children}</>}
     </>
   );

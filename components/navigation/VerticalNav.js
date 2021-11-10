@@ -14,8 +14,8 @@ const VerticalNav = () => {
   const { sessionUser } = useStore();
 
   return (
-    <div className='fixed top-0 left-0 z-10 flex flex-col items-start w-64 h-full bg-gray-100 shadow-sm '>
-      <div className='self-stretch flex-grow-0 m-0'>
+    <div className='top-0 left-0 z-10 flex flex-col items-start w-64 h-full bg-gray-100 shadow-sm '>
+      <div className='sticky top-0 self-stretch flex-grow-0 m-0'>
         <h1 className='font-sans text-2xl font-semibold left-2.5 m-  text-twitter m-5'>
           mweeter
         </h1>

@@ -7,6 +7,7 @@ import { useStore } from 'lib/zustand/store';
 import PostForm from 'components/feed/PostForm';
 import Feed from 'components/feed/Feed';
 import VerticalNav from 'components/navigation/VerticalNav';
+import FollowOthers from 'components/users/FollowOthers';
 
 export default function Home({ newActiveUser, session, feed }) {
   const { data: user, status } = useSession();
@@ -26,20 +27,28 @@ export default function Home({ newActiveUser, session, feed }) {
           <title>mweeter</title>
           <link rel='icon' href='/favicon.ico' />
         </Head>
-        <div className='relative flex flex-col w-3/5 h-full left-80 mt-11'>
-          {/* feed */}
+        <div className='relative flex flex-col w-full h-full m-auto '>
+          <div className='flex flex-row w-full m-auto'>
+            <div>
+              <VerticalNav />
+            </div>
+            <main className='flex flex-row justify-between w-full mx-12 mt-11'>
+              {/* feed */}
+              <div className='w-8/12'>
+                <h1 className='text-2xl font-extrabold mb-7'>Your Feed</h1>
+                <PostForm />
 
-          <div>
-            <h1 className='text-2xl font-extrabold mb-7'>Your Feed</h1>
-            <PostForm />
+                <Feed feed={feed} />
 
-            <Feed feed={feed} />
+                {status === 'loading' && <p>loading...</p>}
+              </div>
 
-            {status === 'loading' && <p>loading...</p>}
+              {/* follow others */}
+              <div className='w-3/12'>
+                <FollowOthers id={sessionUser?.id} />
+              </div>
+            </main>
           </div>
-
-          {/* follow others */}
-          <div></div>
         </div>
       </>
     );
