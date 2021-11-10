@@ -7,23 +7,25 @@ const UserAvatar = ({ user }) => {
       <span className='self-stretch block w-full h-px bg-gray-200' />
 
       <div className='flex items-center justify-between w-full h-20 '>
-        {image && (
-          <div className='flex flex-row align-center'>
+        <div className='flex flex-row align-center'>
+          <div className='h-9 w-9'>
             <Image
-              src={image}
+              src={image || '/rainbow.png'}
               alt='user profile image'
               width={36}
               height={36}
               className='rounded-full'
             />
-            <div className='ml-3'>
-              <div className='h-5 text-sm font-medium text-gray-700 capitalize '>
-                {`${firstName} ${lastName}`}
-              </div>
-              <p className='h-4 text-xs text-gray-500'>{userName}</p>
-            </div>
           </div>
-        )}
+
+          <div className='ml-3'>
+            <div className='h-5 text-sm font-medium text-gray-700 capitalize '>
+              {`${firstName} ${lastName}`}
+            </div>
+            <p className='h-4 text-xs text-gray-500'>{userName}</p>
+          </div>
+        </div>
+
         <button className='w-16  p-0.5 shadow-sm text-sm font-medium border rounded-xl '>
           Follow
         </button>

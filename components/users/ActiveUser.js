@@ -9,10 +9,10 @@ const ActiveUser = () => {
   return (
     <div>
       <div className='mt-4 ml-4'>
-        {image && (
+        {user && (
           <div className='flex flex-row align-center'>
             <Image
-              src={image}
+              src={image || '/rainbow.png'}
               alt='user profile image'
               width={36}
               height={36}

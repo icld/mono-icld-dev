@@ -36,6 +36,9 @@ export default function Home() {
             <LoginButton text={item.text} icon={item.icon} />
           </div>
         ))}
+        <button onClick={() => signIn('github', { callbackUrl: '/' })}>
+          github
+        </button>
       </div>
     </div>
   );
@@ -53,5 +56,11 @@ const buttonInfo = [
     text: 'Sign in with Microsoft',
     icon: <MicrosoftSvg />,
     signInId: 'azure-ad',
+  },
+  {
+    name: 'github',
+    text: 'Sign in with Github',
+    icon: <MicrosoftSvg />,
+    signInId: 'github',
   },
 ];

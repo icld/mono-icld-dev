@@ -15,7 +15,7 @@ const Feed = ({ feed }) => {
             <>
               {sessionUser.id === authorId ? null : (
                 <div key={`post-${i}`} className='relative flex flex-row '>
-                  <div>
+                  <div className='flex-shrink-0'>
                     <Image
                       src={image}
                       alt='User smiling face'
