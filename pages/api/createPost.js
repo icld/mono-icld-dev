@@ -7,7 +7,7 @@ export default async function createPost(req, res) {
 
   const postData = JSON.parse(req.body);
 
-  const { userId, content } = postData;
+  const { userId, content } = await postData;
 
   const savedPost = await prisma.post.create({
     data: {

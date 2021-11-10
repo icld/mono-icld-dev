@@ -1,5 +1,6 @@
 import { useStore } from 'lib/zustand/store';
 import { useForm } from 'react-hook-form';
+import { DevTool } from '@hookform/devtools';
 
 async function createPost(formData) {
   const response = await fetch('/api/createPost', {
@@ -18,9 +19,11 @@ const PostForm = () => {
   const { sessionUser } = useStore();
 
   console.log(sessionUser.id);
+
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm();
 
@@ -41,12 +44,14 @@ const PostForm = () => {
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
+          hidden
           type='text'
           placeholder='userId'
           {...register('userId', { required: true })}
           value={sessionUser?.id}
         />
-        <textarea
+        <label htmlFor='content'>content</label>
+        <input
           placeholder="What's on your min..."
           type='text'
           {...register('content', { required: true, min: 1, maxLength: 280 })}
@@ -59,6 +64,7 @@ const PostForm = () => {
           Send Mweet
         </button>
       </form>
+      {process.env.NODE_ENV !== 'production' && <DevTool control={control} />}
     </div>
   );
 };
