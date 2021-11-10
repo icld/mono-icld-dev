@@ -6,6 +6,7 @@ import { prisma } from 'lib/prisma/client';
 import { useStore } from 'lib/zustand/store';
 import PostForm from 'components/feed/PostForm';
 import Feed from 'components/feed/Feed';
+import VerticalNav from 'components/navigation/VerticalNav';
 
 export default function Home({ newActiveUser, session, feed }) {
   const { data: user, status } = useSession();
@@ -25,13 +26,20 @@ export default function Home({ newActiveUser, session, feed }) {
           <title>mweeter</title>
           <link rel='icon' href='/favicon.ico' />
         </Head>
-        <div className='relative flex flex-col h-full m-auto left-80 mt-11'>
-          <h1 className='text-2xl font-extrabold mb-7'>Your Feed</h1>
-          <PostForm />
+        <div className='relative flex flex-col w-3/5 h-full left-80 mt-11'>
+          {/* feed */}
+
           <div>
+            <h1 className='text-2xl font-extrabold mb-7'>Your Feed</h1>
+            <PostForm />
+
             <Feed feed={feed} />
+
+            {status === 'loading' && <p>loading...</p>}
           </div>
-          {status === 'loading' && <p>loading...</p>}
+
+          {/* follow others */}
+          <div></div>
         </div>
       </>
     );

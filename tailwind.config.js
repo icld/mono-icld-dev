@@ -11,6 +11,7 @@ module.exports = {
         twitter: '#2F80ED',
         buttonBorder: '#D1D5DB',
         buttonLetters: '#818D9F',
+        submitButton: '#6A73C5',
       },
     },
   },

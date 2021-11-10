@@ -32,7 +32,6 @@ const PostForm = () => {
       console.log(data);
       await createPost(data);
       alert('success');
-      //   router.push('/');
     } catch (error) {
       console.log('here error');
       console.log(errors);
@@ -41,8 +40,8 @@ const PostForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <div className='mb-9'>
+      <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col'>
         <input
           hidden
           type='text'
@@ -50,16 +49,19 @@ const PostForm = () => {
           {...register('userId', { required: true })}
           value={sessionUser?.id}
         />
-        <label htmlFor='content'>content</label>
-        <input
-          placeholder="What's on your min..."
+        <label htmlFor='content' className='sr-only'>
+          content
+        </label>
+        <textarea
+          placeholder="What's on your mind..."
           type='text'
           {...register('content', { required: true, min: 1, maxLength: 280 })}
+          className='border border-gray-200 rounded-md py-2  px-3.5   h-20  mb-4'
         />
 
         <button
           type='submit'
-          className='py-2.5 px-5 w-36  h-11 text-sm font-medium text-white bg-purple-700 hover:bg-purple-500 rounded-md'
+          className='py-2.5 px-5 w-36  h-11 text-sm font-medium text-white  bg-submitButton hover:bg-purple-500 rounded-md self-end'
         >
           Send Mweet
         </button>
