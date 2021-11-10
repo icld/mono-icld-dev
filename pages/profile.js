@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { getSession } from 'next-auth/react';
-
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { useStore } from 'lib/zustand/store';
+
+import Layout from 'components/layout/Layout';
 
 async function updateUser(formData) {
   const response = await fetch('/api/updateUser', {
@@ -51,8 +52,8 @@ const Profile = ({ user }) => {
   const labelStyle = 'mb-1 text-sm font-medium text-gray-700';
 
   return (
-    <div className='absolute w-full h-full'>
-      <div className='relative font-normal left-80 mt-11'>
+    <Layout>
+      <div className='flex flex-col'>
         <h1 className='text-2xl font-extrabold mb-7'>Your Profile</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className=''>
@@ -133,7 +134,7 @@ const Profile = ({ user }) => {
           </button>
         </form>
       </div>
-    </div>
+    </Layout>
   );
 };
 
