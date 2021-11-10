@@ -1,7 +1,46 @@
+import { useState, useEffect } from 'react';
+import { useStore } from 'lib/zustand/store';
+import { follow, unFollow } from 'utils/prismaHelpers';
 import Image from 'next/image';
 
 const UserAvatar = ({ user }) => {
-  const { image, userName, firstName, lastName } = user;
+  const [following, setFollowing] = useState(false);
+  const { sessionUser } = useStore();
+  const { image, userName, firstName, lastName, id } = user;
+
+  // Check if sessionUser is following this user
+  useEffect(() => {
+    setFollowing(sessionUser.following.some((item) => item.id === user.id));
+  }, []);
+
+  const handleFollow = async () => {
+    const data = {
+      activeUser: await sessionUser.id,
+      id: id,
+    };
+    try {
+      await follow(data);
+      setFollowing(true);
+      alert(`Nice! You followed ${userName}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleUnfollow = async () => {
+    const data = {
+      activeUser: await sessionUser.id,
+      id: id,
+    };
+    try {
+      await unFollow(data);
+      setFollowing(false);
+      alert(`Nice! You have unFollowed ${userName}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className='w-full'>
       <span className='self-stretch block w-full h-px bg-gray-200' />
@@ -26,8 +65,12 @@ const UserAvatar = ({ user }) => {
           </div>
         </div>
 
-        <button className='w-16  p-0.5 shadow-sm text-sm font-medium border rounded-xl '>
-          Follow
+        {/* Follow button  - dynamic based on following state */}
+        <button
+          className='w-16  p-0.5 shadow-sm text-sm font-medium border rounded-xl '
+          onClick={following ? () => handleUnfollow() : () => handleFollow()}
+        >
+          {following ? 'Unfollow' : 'Follow'}
         </button>
       </div>
     </div>

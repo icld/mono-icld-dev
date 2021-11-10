@@ -66,6 +66,10 @@ export async function getServerSideProps({ req }) {
     where: {
       email: session?.user?.email,
     },
+    include: {
+      following: true,
+      followers: true,
+    },
   });
   let newActiveUser;
 
