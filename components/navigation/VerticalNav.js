@@ -7,13 +7,14 @@ import ProfileIcon from './icons/ProfileIcon';
 import LogoutIcon from './icons/LogoutIcon';
 import NavButton from './NavButton';
 import ActiveUser from 'components/users/ActiveUser';
+import UserAvatar from 'components/users/UserAvatar';
 
 const VerticalNav = () => {
   const router = useRouter();
   const { sessionUser } = useStore();
 
   return (
-    <div className='absolute top-0 left-0 z-10 flex flex-col items-start w-64 h-screen bg-gray-100 shadow-md '>
+    <div className='fixed top-0 left-0 z-10 flex flex-col items-start w-64 h-full bg-gray-100 shadow-sm '>
       <div className='self-stretch flex-grow-0 m-0'>
         <h1 className='font-sans text-2xl font-semibold left-2.5 m-  text-twitter m-5'>
           mweeter
@@ -25,7 +26,7 @@ const VerticalNav = () => {
             <NavButton key={`nav-item-${i}`} item={item} />
           ))}
           <span className='self-stretch block h-px bg-gray-200' />
-          <ActiveUser />
+          <ActiveUser user={sessionUser} />
         </div>
       </div>
     </div>

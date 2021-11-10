@@ -24,6 +24,7 @@ const PostForm = () => {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -32,9 +33,8 @@ const PostForm = () => {
       console.log(data);
       await createPost(data);
       alert('success');
+      reset();
     } catch (error) {
-      console.log('here error');
-      console.log(errors);
       console.log(error);
     }
   };

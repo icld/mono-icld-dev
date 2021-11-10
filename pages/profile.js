@@ -36,6 +36,7 @@ const Profile = ({ user }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -46,6 +47,7 @@ const Profile = ({ user }) => {
       console.log(data);
       await updateUser(data);
       alert('success');
+      reset();
       router.push('/');
     } catch (error) {
       console.log(error);
