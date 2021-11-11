@@ -4,14 +4,14 @@ import { follow, unFollow } from 'utils/prismaHelpers';
 import Image from 'next/image';
 
 const UserAvatar = ({ user }) => {
-  const [following, setFollowing] = useState(false);
+  const [following, setFollowing] = useState();
   const { sessionUser } = useStore();
   const { image, userName, firstName, lastName, id } = user;
 
   // Check if sessionUser is following this user
   useEffect(() => {
     setFollowing(sessionUser.following.some((item) => item.id === user.id));
-  }, [setFollowing]);
+  }, []);
 
   const handleFollow = async () => {
     const data = {
@@ -20,7 +20,7 @@ const UserAvatar = ({ user }) => {
     };
     try {
       await follow(data);
-      setFollowing(true);
+      !following && setFollowing(true);
       alert(`Nice! You followed ${userName}`);
     } catch (error) {
       console.log(error);
@@ -34,7 +34,7 @@ const UserAvatar = ({ user }) => {
     };
     try {
       await unFollow(data);
-      setFollowing(false);
+      following && setFollowing(false);
       alert(`Nice! You have unFollowed ${userName}`);
     } catch (error) {
       console.log(error);

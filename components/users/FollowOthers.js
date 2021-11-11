@@ -1,7 +1,7 @@
 import useSWR from 'swr';
-import UserAvatar from './UserAvatar';
+import { fetcher } from 'lib/swr/fetcher';
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+import UserAvatar from './UserAvatar';
 
 const FollowOthers = ({ id }) => {
   const { data, error } = useSWR('/api/allUsers', fetcher);
