@@ -1,9 +1,11 @@
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useStore } from 'lib/zustand/store';
 import { follow, unFollow } from 'utils/prismaHelpers';
 import Image from 'next/image';
 
 const UserAvatar = ({ user }) => {
+  const router = useRouter();
   const [following, setFollowing] = useState();
   const { sessionUser } = useStore();
   const { image, userName, firstName, lastName, id } = user;
@@ -45,7 +47,10 @@ const UserAvatar = ({ user }) => {
     <div className='w-full'>
       <span className='self-stretch block w-full h-px bg-gray-200' />
 
-      <div className='flex items-center justify-between w-full h-20 '>
+      <div
+        onClick={() => router.push(`/user/${id}`)}
+        className='flex items-center justify-between w-full h-20 cursor-pointer '
+      >
         <div className='flex flex-row align-center'>
           <div className='h-9 w-9'>
             <Image

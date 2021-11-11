@@ -1,0 +1,12 @@
+{
+  "https://cdn.skypack.dev/-/canvas-confetti@v1.4.0-POmgSMO0U5q84otJfYlN/dist=es2019,mode=imports/optimized/canvas-confetti.js": { "integrity": "sha512-CQvMBYvw2oXoavqkNwjHzIBuL0at7CkHRlcJp7WZeXKOMAiCotkJ5ud2yHUAkmQmRmN7kl3x9kW8aKaErG3uLQ==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.skypack.dev/-/create-react-class@v15.7.0-N1XVDJKEbjGgZJqirdPG/dist=es2019,mode=imports/optimized/create-react-class.js": { "integrity": "sha512-fPFgvIz18/zFRyK2GRVnoeR6YgD8YPkDxN4Ot1Fi27PcTFQAuYpejcFVDo4FOGNQGJx8S/ZQN/h4M5AcyVArxg==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.skypack.dev/-/object-assign@v4.1.1-LbCnB3r2y2yFmhmiCfPn/dist=es2019,mode=imports/optimized/object-assign.js": { "integrity": "sha512-PDkEgBVEnNNtSmSlVHUOX1hnHnL+VTaoQWg8t78RcCInNwWJQ7V0ollT+M7HScHq1BukvJxGluC0UZMOthyKtw==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.skypack.dev/-/prop-types@v15.7.2-cMiOS1BvlP0FPwjFzCIn/dist=es2019,mode=imports/optimized/prop-types.js": { "integrity": "sha512-o+sfZ74BTuz+MUK0A5djcuipFo3mCbVlAdfb4EmOdS4hmDg2XPIwOPswxilIL6NdDXwnNmw1PasK/lFo7VvKow==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.skypack.dev/-/random-hex@v1.0.2-c8HJFpt2JXcOVoOMWn1O/dist=es2019,mode=imports/optimized/random-hex.js": { "integrity": "sha512-To0kJajpzvOY6L3+HXjfOIbZCzT1v0WNkYGwnYLucFz4jPalOoPj/hmmZ+lI+Y5Gj54rzOC2rJgvg5zEJQ6Vwg==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.skypack.dev/-/react-snowfetti@v1.2.4-Q0mP6rifUOdi9hGFxhBL/dist=es2019,mode=imports/optimized/react-snowfetti.js": { "integrity": "sha512-dG/KhvIhx4UD83IPIKI7dyTPtQgnbfDj/09hLbYwJHgbKGI7jMsNSkxWu8LRZraDlpPRHan9Y/TEaGE3+2UmwQ==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.skypack.dev/-/react@v17.0.1-yH0aYV1FOvoIPeKBbHxg/dist=es2019,mode=imports/optimized/react.js": { "integrity": "sha512-Oe0vHmrMutaQNX76TDeyAJPYltX3aiC5m6hCofxIb8t5AuXWr5Z7W0cz+9yy+44K09z+JIpe8E+M9UTwTQ5Khg==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.skypack.dev/canvas-confetti": { "integrity": "sha512-u8eX5BcoJhw6bt7ArFiynDqpYoADBSvY/xqUNhFfHtO3BvWIIzJJFj8He3SIdsayNyJdz2sDt9V47m6f2hppCQ==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.skypack.dev/react-snowfetti": { "integrity": "sha512-7oI9JYekeWL8gwNkq886KV+czN7tKCg14TqBOlHHIALH+WNn8neRUF16xNybq9GqDc/q1EI25Z2HgcZhTRJhSg==", "contentType": "application/javascript; charset=utf-8" },
+  "version": 1
+}

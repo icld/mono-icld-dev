@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import confetti from 'https://cdn.skypack.dev/canvas-confetti';
 import { getSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
@@ -35,7 +36,12 @@ const Profile = ({ user }) => {
     try {
       console.log(data);
       await updateUser(data);
-      alert('success');
+      confetti({
+        particleCount: 1000,
+        startVelocity: 30,
+        spread: 180,
+      });
+      // alert('success');
       reset();
       router.push('/');
     } catch (error) {

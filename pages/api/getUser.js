@@ -5,11 +5,11 @@ export default async function getUser(req, res) {
     return res.status(405).json({ message: 'Method not allowed ' });
   }
 
-  const userId = JSON.parse(req.body);
+  const postId = req.query.id;
 
   const user = await prisma.user.findUnique({
     where: {
-      id: userId,
+      id: postId,
     },
   });
   res.json(user);
