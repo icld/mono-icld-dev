@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react';
 import { useStore } from 'lib/zustand/store';
 import { useForm } from 'react-hook-form';
+import confetti from 'https://cdn.skypack.dev/canvas-confetti';
 import { DevTool } from '@hookform/devtools';
 
 async function createPost(formData) {
@@ -16,9 +18,12 @@ async function createPost(formData) {
 }
 
 const PostForm = () => {
+  const [submitted, setSubmitted] = useState(false);
   const { sessionUser } = useStore();
 
-  console.log(sessionUser.id);
+  useEffect(() => {
+    setSubmitted(false);
+  }, [setSubmitted]);
 
   const {
     register,
@@ -32,6 +37,12 @@ const PostForm = () => {
     try {
       console.log(data);
       await createPost(data);
+      confetti({
+        particleCount: 1000,
+        startVelocity: 30,
+        spread: 180,
+      });
+      setSubmitted(true);
       alert('success');
       reset();
     } catch (error) {

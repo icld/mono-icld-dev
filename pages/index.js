@@ -4,8 +4,9 @@ import { useRouter } from 'next/router';
 import { useSession, getSession } from 'next-auth/react';
 import { prisma } from 'lib/prisma/client';
 import { useStore } from 'lib/zustand/store';
+
 import PostForm from 'components/feed/PostForm';
-import Feed from 'components/feed/Feed';
+import UserFeed from 'components/feed/Feed';
 import FollowOthers from 'components/users/FollowOthers';
 import Layout from 'components/layout/Layout';
 
@@ -28,7 +29,7 @@ export default function Home({ newActiveUser, session, feed }) {
           <h1 className='text-2xl font-extrabold mb-7'>Your Feed</h1>
           <PostForm />
 
-          <Feed feed={feed} />
+          <UserFeed feed={feed} />
 
           {status === 'loading' && <p>loading...</p>}
         </div>

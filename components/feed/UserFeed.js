@@ -5,7 +5,7 @@ const UserFeed = ({ feed }) => {
   const { sessionUser } = useStore();
   console.log(feed);
   return (
-    <div className='space-y-7'>
+    <div className='h-full space-y-7'>
       {feed &&
         feed.map((post, i) => {
           const { author, content, createdAt, authorId } = post;

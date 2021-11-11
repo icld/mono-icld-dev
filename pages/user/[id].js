@@ -30,6 +30,7 @@ export async function getServerSideProps(context) {
     include: {
       posts: {
         include: { author: true },
+        orderBy: { createdAt: 'desc' },
       },
     },
   });
