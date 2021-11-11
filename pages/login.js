@@ -27,7 +27,7 @@ export default function Home() {
       <h1 className='h-10 mt-2 text-2xl font-extrabold text-gray-700'>
         mweeter
       </h1>
-      <div className='flex mt-6 space-x-3 '>
+      <div className='flex flex-col items-center justify-center mt-6 space-y-3 sm:space-y-0 sm:space-x-3 sm:flex-row '>
         {buttonInfo.map((item, i) => (
           <div
             onClick={() => signIn(`${item.signInId}`, { callbackUrl: '/' })}
@@ -36,9 +36,6 @@ export default function Home() {
             <LoginButton text={item.text} icon={item.icon} />
           </div>
         ))}
-        {/* <button onClick={() => signIn('github', { callbackUrl: '/' })}>
-          github
-        </button> */}
       </div>
     </div>
   );
