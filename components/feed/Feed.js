@@ -76,7 +76,7 @@ const Feed = () => {
   }, [submitted]);
 
   return (
-    <div>
+    <div className='bg-white'>
       <div className='hidden'>
         <FeedSection i={cnt + 1} />
       </div>

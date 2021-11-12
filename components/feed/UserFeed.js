@@ -12,7 +12,10 @@ const UserFeed = ({ feed }) => {
 
           return (
             <>
-              <div key={`post-${i}`} className='relative flex flex-row '>
+              <div
+                key={`post-${i}`}
+                className='relative flex flex-row bg-white'
+              >
                 <div className='flex-shrink-0'>
                   <Image
                     src={image}

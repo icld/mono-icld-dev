@@ -17,7 +17,6 @@ const FollowOthers = ({ id }) => {
       }
     }, [data]);
 
-    console.log(data);
     return (
       <div className='flex flex-col mt-14'>
         <h1 className='mb-3 text-lg font-bold'>Follow Others</h1>

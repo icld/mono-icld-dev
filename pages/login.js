@@ -1,10 +1,14 @@
 import Head from 'next/head';
+import { useState, useEffect } from 'react';
 import { FaTwitter } from 'react-icons/fa';
 import LoginButton from 'components/buttons/LoginButton';
 import MicrosoftSvg from 'components/buttons/MicrosoftSvg';
 import GoogleSvg from 'components/buttons/GoogleSvg';
 import { signIn, signOut, useSession, getSession } from 'next-auth/react';
 import { useStore } from 'lib/zustand/store';
+import Feed from 'components/feed/Feed';
+import UserFeed from 'components/feed/UserFeed';
+import { prisma } from 'lib/prisma/client';
 
 async function updateUser(userData) {
   const response = await fetch('/api/updateUser', {
@@ -19,18 +23,42 @@ async function updateUser(userData) {
   return await response.json();
 }
 
-export default function Home() {
+export default function Home({ feed }) {
+  const [showLogin, setShowLogin] = useState(false);
   const { sessionUser } = useStore();
   const { data: session, status } = useSession();
 
-  return (
-    <div className='relative flex flex-col items-center justify-center h-screen m-auto'>
-      <FaTwitter className='w-12 h-12 text-twitter ' />
+  console.log(feed);
 
-      <h1 className='h-10 mt-2 text-2xl font-extrabold text-gray-700'>
-        mweeter
-      </h1>
-      <div className='flex flex-col items-center justify-center mt-6 space-y-3 sm:space-y-0 sm:space-x-3 sm:flex-row '>
+  useEffect(() => {
+    setShowLogin(false);
+  }, []);
+
+  return (
+    <div className='relative flex flex-col items-center justify-center h-screen py-8 m-auto bg-gray-50'>
+      <div
+        className='flex flex-col items-center justify-center transition-all duration-300 cursor-pointer hover:scale-150'
+        onClick={() => setShowLogin(!showLogin)}
+      >
+        <FaTwitter className='w-12 h-12 text-twitter ' />
+
+        <h1 className='h-10 mt-2 text-2xl font-extrabold text-gray-700 '>
+          mweeter
+        </h1>
+      </div>
+      <div
+        className={`w-10/12 mt-6 md:w-1/3  overflow-scroll  transition-all transform  duration-300   ${
+          showLogin ? 'h-0' : 'h-96'
+        }`}
+      >
+        <UserFeed feed={feed} />
+      </div>
+
+      <div
+        className={`flex flex-col items-center justify-center mt-6 space-y-3 sm:space-y-0 sm:space-x-3 sm:flex-row ${
+          showLogin ? 'block' : 'hidden'
+        }  `}
+      >
         {buttonInfo.map((item, i) => (
           <div
             onClick={() => signIn(`${item.signInId}`, { callbackUrl: '/' })}
@@ -40,6 +68,14 @@ export default function Home() {
           </div>
         ))}
       </div>
+      <button
+        className={` font-semibold  mt-6 text-gray-700 transition-all duration-200 ${
+          showLogin && 'hidden'
+        } hover:text-gray-400 `}
+        onClick={() => setShowLogin(!showLogin)}
+      >
+        LOGIN
+      </button>
     </div>
   );
 }
@@ -67,6 +103,12 @@ const buttonInfo = [
 
 export async function getServerSideProps({ req }) {
   const session = await getSession({ req });
+  const feed = await prisma.post.findMany({
+    include: {
+      author: true,
+    },
+    orderBy: { createdAt: 'desc' },
+  });
 
   if (session) {
     return {
@@ -78,6 +120,6 @@ export async function getServerSideProps({ req }) {
   }
 
   return {
-    props: {},
+    props: { feed },
   };
 }

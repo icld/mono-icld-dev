@@ -40,7 +40,6 @@ const PostForm = () => {
     };
 
     try {
-      console.log(formData);
       await createPost(formData);
       confetti({
         particleCount: 1000,
