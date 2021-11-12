@@ -25,7 +25,7 @@ export default function Home({ newActiveUser, session, feed }) {
     return (
       <Layout>
         {/* feed */}
-        <div className='w-8/12'>
+        <div className='lg:w-7/12'>
           <h1 className='text-2xl font-extrabold mb-7'>Your Feed</h1>
           <PostForm />
 
@@ -35,7 +35,7 @@ export default function Home({ newActiveUser, session, feed }) {
         </div>
 
         {/* follow others */}
-        <div className='w-3/12'>
+        <div className='lg:w-4/12'>
           <FollowOthers id={sessionUser?.id} />
         </div>
       </Layout>

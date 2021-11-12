@@ -11,7 +11,7 @@ const NavButton = ({ item }) => {
           ? () => signOut({ callbackUrl: '/login' })
           : () => router.push(item.path)
       }
-      className={`flex flex-row items-center py-2 pl-2 pr-3 rounded-md ${
+      className={`flex flex-row items-center py-2 pl-2 pr-3 rounded-md  ${
         item.path === router.pathname && 'bg-gray-200'
       }`}
     >

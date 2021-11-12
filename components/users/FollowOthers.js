@@ -7,18 +7,19 @@ const FollowOthers = ({ id }) => {
   const { data, error } = useSWR('/api/allUsers', fetcher);
 
   return (
-    <div className='flex flex-col items-start mt-14'>
+    <div className='flex flex-col mt-14'>
       <h1 className='mb-3 text-lg font-bold'>Follow Others</h1>
-
-      {error ? (
-        <div>error</div>
-      ) : !data ? (
-        <div>Loading...</div>
-      ) : (
-        data.map((profile, i) => (
-          <UserAvatar key={`profile-${i}`} user={profile} />
-        ))
-      )}
+      <div className='grid items-start grid-cols-1 gap-x-6 sm:grid-cols-2 '>
+        {error ? (
+          <div>error</div>
+        ) : !data ? (
+          <div>Loading...</div>
+        ) : (
+          data.map((profile, i) => (
+            <UserAvatar key={`profile-${i}`} user={profile} />
+          ))
+        )}
+      </div>
     </div>
   );
 };

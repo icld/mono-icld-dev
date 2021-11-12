@@ -1,22 +1,41 @@
-import { useRouter } from 'next/router';
-import { useStore } from 'lib/zustand/store';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
+import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
+import { useStore } from 'lib/zustand/store';
 import HomeIcon from './icons/HomeIcon';
 import FollowingIcon from './icons/FollowingIcon';
 import ProfileIcon from './icons/ProfileIcon';
 import LogoutIcon from './icons/LogoutIcon';
 import NavButton from './NavButton';
 import ActiveUser from 'components/users/ActiveUser';
-import UserAvatar from 'components/users/UserAvatar';
 
 const VerticalNav = () => {
+  const [showNav, setShowNav] = useState(false);
   const router = useRouter();
   const { sessionUser } = useStore();
 
   return (
-    <div className='top-0 left-0 z-10 flex flex-col items-start w-64 h-full bg-gray-100 shadow-sm '>
-      <div className='sticky top-0 self-stretch flex-grow-0 m-0'>
-        <h1 className='font-sans text-2xl font-semibold left-2.5 m-  text-twitter m-5'>
+    <div
+      className={`  fixed  lg:relative  h-full transition-all duration-200 top-0 left-0 z-10 flex flex-col items-start  ${
+        showNav ? 'w-64' : 'w-2'
+      }  lg:w-64   h-full bg-gray-100 shadow-sm `}
+    >
+      <button
+        className={`absolute z-20 p-4 text-3xl lg:hidden ${
+          showNav && 'translate-x-52'
+        } `}
+        onClick={() => setShowNav(!showNav)}
+      >
+        {showNav ? <AiOutlineClose /> : <AiOutlineMenu />}
+      </button>
+      <div
+        className={` ${
+          showNav ? 'block' : 'hidden'
+        }  sticky top-0   self-stretch flex-grow-0 m-0 lg:block  `}
+      >
+        <h1 className='m-5 font-sans text-2xl font-semibold text-twitter'>
           mweeter
         </h1>
 
