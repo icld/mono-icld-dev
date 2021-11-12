@@ -19,7 +19,7 @@ const Following = () => {
 
   return (
     <Layout>
-      <div>
+      <div className='w-full'>
         <h1 className='text-2xl font-extrabold mb-7'>Following</h1>
         <div>
           {error ? (
@@ -27,9 +27,11 @@ const Following = () => {
           ) : !data ? (
             <div>Loading...</div>
           ) : (
-            data[0].following.map((profile, i) => (
-              <UserAvatar key={`following-${i}`} user={profile} />
-            ))
+            <div className='grid grid-cols-1 md:grid-cols-2 md:gap-x-6'>
+              {data[0].following.map((profile, i) => (
+                <UserAvatar key={`following-${i}`} user={profile} />
+              ))}
+            </div>
           )}
         </div>
       </div>

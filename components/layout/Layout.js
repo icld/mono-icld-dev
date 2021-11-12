@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
           <div>
             <VerticalNav />
           </div>
-          <main className='flex flex-col justify-between w-full h-full mx-12 lg:flex-row mt-11'>
+          <main className='flex flex-col justify-between w-full h-full mx-6 md:mx-12 lg:flex-row mt-14 lg:mt-11'>
             {children}
           </main>
         </div>

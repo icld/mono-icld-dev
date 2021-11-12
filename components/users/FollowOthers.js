@@ -9,7 +9,7 @@ const FollowOthers = ({ id }) => {
   return (
     <div className='flex flex-col mt-14'>
       <h1 className='mb-3 text-lg font-bold'>Follow Others</h1>
-      <div className='grid items-start grid-cols-1 gap-x-6 sm:grid-cols-2 '>
+      <div className='grid items-start grid-cols-1 gap-x-6 lg:flex lg:flex-col sm:grid-cols-2 '>
         {error ? (
           <div>error</div>
         ) : !data ? (

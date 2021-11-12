@@ -12,7 +12,9 @@ const userPage = ({ user }) => {
       <div>
         <div>
           {' '}
-          <h1 className='text-2xl font-extrabold mb-7'>{userName} Feed</h1>
+          <h1 className='text-2xl font-extrabold mb-7'>
+            {userName} {posts.length === 0 ? 'has not posted yet' : 'Feed'}
+          </h1>
           <UserFeed feed={posts} />
         </div>
       </div>
