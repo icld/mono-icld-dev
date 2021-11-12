@@ -1,25 +1,35 @@
 import Head from 'next/head';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSession, getSession } from 'next-auth/react';
 import { prisma } from 'lib/prisma/client';
 import { useStore } from 'lib/zustand/store';
+import useSWR, { SWRConfig } from 'swr';
 
 import PostForm from 'components/feed/PostForm';
 import UserFeed from 'components/feed/Feed';
 import FollowOthers from 'components/users/FollowOthers';
 import Layout from 'components/layout/Layout';
+import { fetcher } from 'lib/swr/fetcher';
+import LoadingAnimation from 'components/navigation/LoadingAnimation';
 
 export default function Home({ newActiveUser, session, feed }) {
   const { data: user, status } = useSession();
-  const { sessionUser, setSessionUser } = useStore();
+  const { sessionUser, setSessionUser, submitted, setSubmitted } = useStore();
+  const [feedData, setFeedData] = useState([]);
   const router = useRouter();
-  // console.log(newActiveUser);
 
   useEffect(() => {
-    const x = newActiveUser;
     setSessionUser(newActiveUser);
+    // setSubmitted(false);
   }, []);
+
+  useEffect(() => {
+    mutate();
+    setSubmitted(false);
+  }, [submitted]);
+
+  const { data, error, mutate } = useSWR('/api/feed', fetcher);
 
   if (user) {
     return (
@@ -29,7 +39,9 @@ export default function Home({ newActiveUser, session, feed }) {
           <h1 className='text-2xl font-extrabold mb-7'>Your Feed</h1>
           <PostForm />
 
-          <UserFeed feed={feed} />
+          <SWRConfig value={{ feed }}>
+            {!data ? <LoadingAnimation /> : <UserFeed feed={data} />}
+          </SWRConfig>
 
           {status === 'loading' && <p>loading...</p>}
         </div>

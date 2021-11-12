@@ -18,7 +18,7 @@ async function createPost(formData) {
 }
 
 const PostForm = () => {
-  const [submitted, setSubmitted] = useState(false);
+  const { submitted, setSubmitted } = useStore();
   const { sessionUser } = useStore();
 
   useEffect(() => {
@@ -34,15 +34,20 @@ const PostForm = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    const formData = {
+      content: data.content,
+      userId: sessionUser.id,
+    };
+
     try {
-      await createPost(data);
+      console.log(formData);
+      await createPost(formData);
       confetti({
         particleCount: 1000,
         startVelocity: 30,
         spread: 180,
       });
       setSubmitted(true);
-      alert('success');
       reset();
     } catch (error) {
       console.log(error);
@@ -51,31 +56,41 @@ const PostForm = () => {
 
   return (
     <div className='mb-9'>
-      <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col'>
-        <input
-          hidden
-          type='text'
-          placeholder='userId'
-          {...register('userId', { required: true })}
-          value={sessionUser?.id}
-        />
-        <label htmlFor='content' className='sr-only'>
-          content
-        </label>
-        <textarea
-          placeholder="What's on your mind..."
-          type='text'
-          {...register('content', { required: true, min: 1, maxLength: 280 })}
-          className='border border-gray-200 rounded-md py-2  px-3.5   h-20  mb-4'
-        />
+      {sessionUser && (
+        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col'>
+          {/* <input
+            hidden
+            {...register('userId', { required: true })}
+            value={sessionUser.id}
+          /> */}
+          <label htmlFor='content' className='sr-only'>
+            content
+          </label>
+          <textarea
+            placeholder="What's on your mind..."
+            type='text'
+            {...register('content', {
+              required: true,
 
-        <button
-          type='submit'
-          className='py-2.5 px-5 w-36  h-11 text-sm font-medium text-white  bg-submitButton hover:bg-purple-500 rounded-md self-end'
-        >
-          Send Mweet
-        </button>
-      </form>
+              minLength: {
+                value: 5,
+                message: 'Please include a minimum of 5 characters',
+              },
+              maxLength: 280,
+            })}
+            className='border border-gray-200 rounded-md py-2  px-3.5   h-20  '
+          />
+          <span className='mb-4 text-sm text-red-500 '>
+            {errors?.content?.message}
+          </span>
+          <button
+            type='submit'
+            className={`  py-2.5 px-5 w-36  h-11 text-sm font-medium text-white  bg-submitButton hover:bg-purple-500 rounded-md self-end`}
+          >
+            Send Mweet
+          </button>
+        </form>
+      )}
       {process.env.NODE_ENV !== 'production' && <DevTool control={control} />}
     </div>
   );
