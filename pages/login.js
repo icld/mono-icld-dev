@@ -3,7 +3,7 @@ import { FaTwitter } from 'react-icons/fa';
 import LoginButton from 'components/buttons/LoginButton';
 import MicrosoftSvg from 'components/buttons/MicrosoftSvg';
 import GoogleSvg from 'components/buttons/GoogleSvg';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signIn, signOut, useSession, getSession } from 'next-auth/react';
 import { useStore } from 'lib/zustand/store';
 
 async function updateUser(userData) {
@@ -64,3 +64,20 @@ const buttonInfo = [
   //   signInId: 'github',
   // },
 ];
+
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}

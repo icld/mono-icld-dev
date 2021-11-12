@@ -21,7 +21,6 @@ export default function Home({ newActiveUser, session, feed }) {
 
   useEffect(() => {
     setSessionUser(newActiveUser);
-    // setSubmitted(false);
   }, []);
 
   useEffect(() => {
@@ -42,8 +41,6 @@ export default function Home({ newActiveUser, session, feed }) {
           <SWRConfig value={{ feed }}>
             {!data ? <LoadingAnimation /> : <UserFeed feed={data} />}
           </SWRConfig>
-
-          {status === 'loading' && <p>loading...</p>}
         </div>
 
         {/* follow others */}
