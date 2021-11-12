@@ -77,7 +77,7 @@ const Feed = () => {
         <FeedSection i={cnt + 1} />
       </div>
       <FeedSection i={cnt} />
-      <div className='flex flex-row items-center justify-center w-full mt-4 space-x-4 '>
+      <div className='flex flex-row items-center w-full mt-4 space-x-4 px-11 '>
         {cnt >= 1 && (
           <button className={buttonStyle} onClick={() => setCnt(cnt - 1)}>
             prev{' '}

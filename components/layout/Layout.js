@@ -9,11 +9,11 @@ const Layout = ({ children }) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div className='relative flex flex-col w-full h-full mx-auto '>
-        <div className='flex flex-row w-full m-auto'>
+        <div className='flex flex-row w-full m-auto '>
           <div>
             <VerticalNav />
           </div>
-          <main className='flex flex-col justify-between w-full h-full mx-6 md:mx-12 lg:flex-row mt-14 lg:mt-11'>
+          <main className='flex flex-col justify-between w-full h-screen mx-6 mb-16 md:mx-12 lg:flex-row mt-14 lg:mt-11'>
             {children}
           </main>
         </div>

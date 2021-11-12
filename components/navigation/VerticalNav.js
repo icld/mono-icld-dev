@@ -18,7 +18,7 @@ const VerticalNav = () => {
 
   return (
     <div
-      className={`  fixed  lg:relative  h-full transition-all duration-200 top-0 left-0 z-10 flex flex-col items-start  ${
+      className={`  fixed  lg:relative  h-screen transition-all duration-200 top-0 left-0 z-10 flex flex-col items-start  ${
         showNav ? 'w-64' : 'w-2'
       }  lg:w-64   h-full bg-gray-100 shadow-sm `}
     >
