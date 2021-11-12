@@ -66,10 +66,14 @@ const FeedSection = (i) => {
 
 const Feed = () => {
   const [cnt, setCnt] = useState(0);
-  const { countEnd } = useStore();
+  const { countEnd, submitted } = useStore();
 
   const buttonStyle =
     'px-2 py-0.5 rounded-md text-sm   border border-gray-500 hover:bg-gray-300 duration-150 drop-shadow-sm';
+
+  useEffect(() => {
+    submitted && setCnt(0);
+  }, [submitted]);
 
   return (
     <div>

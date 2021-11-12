@@ -25,6 +25,7 @@ export default function Home({ newActiveUser, session, feed }) {
 
   useEffect(() => {
     mutate();
+    setCnt(0);
     setSubmitted(false);
   }, [submitted]);
 
