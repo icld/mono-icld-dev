@@ -1,15 +1,27 @@
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import useSWR, { SWRConfig } from 'swr';
+import { fetcher } from 'lib/swr/fetcher';
+
 import { useStore } from 'lib/zustand/store';
 
-const Feed = ({ feed }) => {
-  const { sessionUser } = useStore();
+const FeedSection = (i) => {
+  const { countEnd, setCountEnd } = useStore();
+
+  const { data, error, mutate } = useSWR(`/api/feed?page=${i.i}`, fetcher);
+
+  useEffect(() => {
+    if (data) {
+      data.length < 6 ? setCountEnd(true) : setCountEnd(false);
+    }
+  }, [data]);
+
   return (
     <div className='space-y-7'>
-      {feed &&
-        feed.map((post, i) => {
+      {data &&
+        data.map((post, i) => {
           const { author, content, createdAt, authorId } = post;
           const { image, firstName, lastName, userName } = author;
-
           return (
             <>
               <div key={`post-${i}`} className='relative flex flex-row '>
@@ -48,6 +60,36 @@ const Feed = ({ feed }) => {
             </>
           );
         })}
+    </div>
+  );
+};
+
+const Feed = () => {
+  const [cnt, setCnt] = useState(0);
+  const { countEnd } = useStore();
+
+  const buttonStyle =
+    'px-2 py-0.5 rounded-md text-sm   border border-gray-500 hover:bg-gray-300 duration-150 drop-shadow-sm';
+
+  return (
+    <div>
+      <div className='hidden'>
+        <FeedSection i={cnt + 1} />
+      </div>
+      <FeedSection i={cnt} />
+      <div className='flex flex-row items-center justify-center w-full mt-4 space-x-4 '>
+        {cnt >= 1 && (
+          <button className={buttonStyle} onClick={() => setCnt(cnt - 1)}>
+            prev{' '}
+          </button>
+        )}
+
+        {!countEnd && (
+          <button className={buttonStyle} onClick={() => setCnt(cnt + 1)}>
+            next{' '}
+          </button>
+        )}
+      </div>
     </div>
   );
 };

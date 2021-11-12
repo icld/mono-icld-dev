@@ -7,7 +7,7 @@ import { useStore } from 'lib/zustand/store';
 import useSWR, { SWRConfig } from 'swr';
 
 import PostForm from 'components/feed/PostForm';
-import UserFeed from 'components/feed/Feed';
+import Feed from 'components/feed/Feed';
 import FollowOthers from 'components/users/FollowOthers';
 import Layout from 'components/layout/Layout';
 import { fetcher } from 'lib/swr/fetcher';
@@ -16,7 +16,7 @@ import LoadingAnimation from 'components/navigation/LoadingAnimation';
 export default function Home({ newActiveUser, session, feed }) {
   const { data: user, status } = useSession();
   const { sessionUser, setSessionUser, submitted, setSubmitted } = useStore();
-  const [feedData, setFeedData] = useState([]);
+  const [cnt, setCnt] = useState(0);
   const router = useRouter();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function Home({ newActiveUser, session, feed }) {
     setSubmitted(false);
   }, [submitted]);
 
-  const { data, error, mutate } = useSWR('/api/feed', fetcher);
+  const { data, error, mutate } = useSWR(`/api/feed?page=${cnt}`, fetcher);
 
   if (user) {
     return (
@@ -39,7 +39,7 @@ export default function Home({ newActiveUser, session, feed }) {
           <PostForm />
 
           <SWRConfig value={{ feed }}>
-            {!data ? <LoadingAnimation /> : <UserFeed feed={data} />}
+            {!data ? <h3>...loading</h3> : <Feed feed={data} />}
           </SWRConfig>
         </div>
 
