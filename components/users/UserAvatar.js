@@ -23,7 +23,7 @@ const UserAvatar = ({ user }) => {
     try {
       await follow(data);
       !following && setFollowing(true);
-      alert(`Nice! You followed ${userName}`);
+      // alert(`Nice! You followed ${userName}`);
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +37,7 @@ const UserAvatar = ({ user }) => {
     try {
       await unFollow(data);
       following && setFollowing(false);
-      alert(`Nice! You have unFollowed ${userName}`);
+      // alert(`Nice! You have unFollowed ${userName}`);
     } catch (error) {
       console.log(error);
     }
@@ -47,12 +47,12 @@ const UserAvatar = ({ user }) => {
     <div className='w-full'>
       <span className='self-stretch block w-full h-px bg-gray-200' />
 
-      <div
-        onClick={() => router.push(`/user/${id}`)}
-        className='flex items-center justify-between w-full h-20 cursor-pointer '
-      >
-        <div className='flex flex-row align-center'>
-          <div className='h-9 w-9'>
+      <div className='flex items-center justify-between w-full h-20 cursor-pointer '>
+        <div
+          className='flex flex-row duration-200 align-center hover:scale-125 '
+          onClick={() => router.push(`/user/${id}`)}
+        >
+          <div className='h-9 w-9 '>
             <Image
               src={image || '/rainbow.png'}
               alt='user profile image'
@@ -62,7 +62,7 @@ const UserAvatar = ({ user }) => {
             />
           </div>
 
-          <div className='ml-3'>
+          <div className='ml-3 '>
             <div className='h-5 text-sm font-medium text-gray-700 capitalize '>
               {`${firstName} ${lastName}`}
             </div>
@@ -72,7 +72,9 @@ const UserAvatar = ({ user }) => {
 
         {/* Follow button  - dynamic based on following state */}
         <button
-          className='w-16  p-0.5 shadow-sm text-sm font-medium border rounded-xl '
+          className={`w-16  p-0.5 shadow-sm text-sm font-medium border rounded-xl ${
+            following ? 'text-white bg-gray-600' : 'text-gray-600 bg-white'
+          } `}
           onClick={following ? () => handleUnfollow() : () => handleFollow()}
         >
           {following ? 'Unfollow' : 'Follow'}
