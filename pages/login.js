@@ -28,8 +28,6 @@ export default function Home({ feed }) {
   const { sessionUser } = useStore();
   const { data: session, status } = useSession();
 
-  console.log(feed);
-
   useEffect(() => {
     setShowLogin(false);
   }, []);
