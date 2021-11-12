@@ -12,7 +12,9 @@ const UserAvatar = ({ user }) => {
 
   // Check if sessionUser is following this user
   useEffect(() => {
-    setFollowing(sessionUser.following.some((item) => item.id === user.id));
+    if (sessionUser && sessionUser.following) {
+      setFollowing(sessionUser.following.some((item) => item.id === user.id));
+    }
   }, []);
 
   const handleFollow = async () => {
