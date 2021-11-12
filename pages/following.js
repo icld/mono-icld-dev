@@ -19,7 +19,7 @@ const Following = () => {
 
   return (
     <Layout>
-      <div className='w-full'>
+      <div className='w-full h-screen'>
         <h1 className='text-2xl font-extrabold mb-7'>Following</h1>
         <div>
           {error ? (

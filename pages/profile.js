@@ -50,21 +50,21 @@ const Profile = ({ user }) => {
   };
 
   const nameFieldStyle =
-    'flex flex-row items-center px-3.5 py-2.5 w-72 border shadow-sm border-gray-300 rounded-md text-sm text-gray-500  ';
+    'flex flex-row items-center px-3.5 py-2.5 w-full mb-6  sm:w-72 border shadow-sm border-gray-300 rounded-md text-sm text-gray-500  ';
 
   const fieldStyle =
-    'flex flex-row items-center px-3.5 py-2.5 w-96 border shadow-sm border-gray-300 rounded-md text-sm text-gray-500';
+    'flex flex-row items-center px-3.5 py-2.5 w-full sm:w-96 border shadow-sm border-gray-300 rounded-md text-sm text-gray-500';
 
   const labelStyle = 'mb-1 text-sm font-medium text-gray-700';
 
   return (
     <Layout>
-      <div className='flex flex-col'>
+      <div className='flex flex-col h-screen'>
         <h1 className='text-2xl font-extrabold mb-7'>Your Profile</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className=''>
           {/* Name fields in row */}
-          <div className='flex flex-row mb-6 space-x-5'>
+          <div className='flex flex-col sm:space-x-5 sm:flex-row'>
             <div>
               <label htmlFor='firstName' className={labelStyle}>
                 First Name
