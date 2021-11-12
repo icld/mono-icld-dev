@@ -3,7 +3,6 @@ import { useStore } from 'lib/zustand/store';
 
 const UserFeed = ({ feed }) => {
   const { sessionUser } = useStore();
-  console.log(feed);
   return (
     <div className='h-full space-y-7'>
       {feed &&

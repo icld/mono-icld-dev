@@ -34,7 +34,6 @@ const Profile = ({ user }) => {
 
   const onSubmit = async (data) => {
     try {
-      console.log(data);
       await updateUser(data);
       confetti({
         particleCount: 1000,

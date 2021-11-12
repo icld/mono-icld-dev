@@ -15,8 +15,6 @@ const Following = () => {
     data && setFollowing(data[0].following);
   }, [data]);
 
-  console.log(following);
-
   return (
     <Layout>
       <div className='w-full h-screen'>

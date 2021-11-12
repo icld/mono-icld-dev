@@ -5,7 +5,6 @@ import UserFeed from 'components/feed/UserFeed';
 
 const userPage = ({ user }) => {
   const { posts, firstName, lastName, userName } = user;
-  //   console.log(posts);
 
   return (
     <Layout>

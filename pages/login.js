@@ -4,6 +4,7 @@ import LoginButton from 'components/buttons/LoginButton';
 import MicrosoftSvg from 'components/buttons/MicrosoftSvg';
 import GoogleSvg from 'components/buttons/GoogleSvg';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { useStore } from 'lib/zustand/store';
 
 async function updateUser(userData) {
   const response = await fetch('/api/updateUser', {
@@ -19,7 +20,9 @@ async function updateUser(userData) {
 }
 
 export default function Home() {
+  const { sessionUser } = useStore();
   const { data: session, status } = useSession();
+
   return (
     <div className='relative flex flex-col items-center justify-center h-screen m-auto'>
       <FaTwitter className='w-12 h-12 text-twitter ' />
@@ -48,16 +51,16 @@ const buttonInfo = [
     icon: <GoogleSvg />,
     signInId: 'google',
   },
-  {
-    name: 'microsoft',
-    text: 'Sign in with Microsoft',
-    icon: <MicrosoftSvg />,
-    signInId: 'azure-ad',
-  },
-  {
-    name: 'github',
-    text: 'Sign in with Github',
-    icon: <MicrosoftSvg />,
-    signInId: 'github',
-  },
+  // {
+  //   name: 'microsoft',
+  //   text: 'Sign in with Microsoft',
+  //   icon: <MicrosoftSvg />,
+  //   signInId: 'azure-ad',
+  // },
+  // {
+  //   name: 'github',
+  //   text: 'Sign in with Github',
+  //   icon: <MicrosoftSvg />,
+  //   signInId: 'github',
+  // },
 ];

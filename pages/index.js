@@ -14,7 +14,7 @@ export default function Home({ newActiveUser, session, feed }) {
   const { data: user, status } = useSession();
   const { sessionUser, setSessionUser } = useStore();
   const router = useRouter();
-  console.log(newActiveUser);
+  // console.log(newActiveUser);
 
   useEffect(() => {
     const x = newActiveUser;

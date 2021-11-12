@@ -8,7 +8,6 @@ export default async function following(req, res) {
     return res.status(405).json({ message: 'Method not allowed ' });
   }
 
-  console.log(session);
   const currentUserId = await prisma.user.findFirst({
     where: {
       email: session.user.email,

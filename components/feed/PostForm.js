@@ -35,7 +35,6 @@ const PostForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      console.log(data);
       await createPost(data);
       confetti({
         particleCount: 1000,
