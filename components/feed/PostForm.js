@@ -75,7 +75,8 @@ const PostForm = () => {
                 value: 5,
                 message: 'Please include a minimum of 5 characters',
               },
-              maxLength: 280,
+              maxLength: { value: 280, message: 'Maximum characaters are 280' },
+              max: 280,
             })}
             className='border border-gray-200 rounded-md py-2  px-3.5   h-20  '
           />

@@ -17,7 +17,7 @@ const FeedSection = (i) => {
   }, [data]);
 
   return (
-    <div className='space-y-7'>
+    <div className=' space-y-7'>
       {data &&
         data.map((post, i) => {
           const { author, content, createdAt, authorId } = post;
@@ -54,7 +54,9 @@ const FeedSection = (i) => {
                     </li>
                   </div>
                   {/* Content Section - on bottom */}
-                  <div className='text-sm text-gray-500'>{content}</div>
+                  <div className='text-sm text-gray-500 break-words '>
+                    {content}
+                  </div>
                 </div>
               </div>
             </>
