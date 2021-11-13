@@ -9,11 +9,11 @@ import UserAvatar from 'components/users/UserAvatar';
 
 const Following = () => {
   const [following, setFollowing] = useState();
-  const { data, error } = useSWR('/api/following', fetcher);
+  const { data, error, mutate } = useSWR('/api/following', fetcher);
 
   useEffect(() => {
     data && setFollowing(data[0].following);
-  }, [data]);
+  }, []);
 
   return (
     <Layout>

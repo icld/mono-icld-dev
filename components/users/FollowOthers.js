@@ -9,7 +9,10 @@ const FollowOthers = ({ id }) => {
   const [countEnd, setCountEnd] = useState(false);
 
   const UserFeed = (i) => {
-    const { data, error } = useSWR(`api/someUsers?page=${cnt}`, fetcher);
+    const { data, error, mutate } = useSWR(
+      `api/someUsers?page=${cnt}`,
+      fetcher
+    );
 
     useEffect(() => {
       if (data) {

@@ -15,7 +15,12 @@ const UserAvatar = ({ user }) => {
     if (sessionUser && sessionUser.following) {
       setFollowing(sessionUser.following.some((item) => item.id === user.id));
     }
-  }, []);
+  }, [setFollowing]);
+  console.log(
+    `${sessionUser.following.some(
+      (item) => item.id === user.id
+    )}following ${userName}`
+  );
 
   const handleFollow = async () => {
     const data = {
