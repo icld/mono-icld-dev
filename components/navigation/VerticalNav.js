@@ -23,8 +23,8 @@ const VerticalNav = () => {
       }  lg:w-64   h-full bg-gray-100 shadow-sm `}
     >
       <button
-        className={`absolute z-20 p-4 text-3xl lg:hidden ${
-          showNav && 'translate-x-52'
+        className={`absolute z-20 m-3 p-1 text-3xl text-gray-700 bg-white  hover:text-gray-500   rounded-md bg-opacity-30 lg:hidden   ${
+          showNav && 'translate-x-52 bg-opacity-0  '
         } `}
         onClick={() => setShowNav(!showNav)}
       >
