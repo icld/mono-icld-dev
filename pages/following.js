@@ -12,6 +12,7 @@ const Following = () => {
   const { data, error, mutate } = useSWR('/api/following', fetcher);
 
   useEffect(() => {
+    mutate();
     data && setFollowing(data[0].following);
   }, []);
 
